@@ -7,7 +7,7 @@ The Movie Max API provides endpoints for managing users, interacting with a watc
 
 Unit Tests and Smoketests links
 
-Google doc with screenshots of unit tests
+Google doc with screenshots of unit tests and smoke test passing
 https://docs.google.com/document/d/1ODJwDcbWrOs2NB70VWrl8NrUR4SNIbCaSKmT9Ij_Ay0/edit?usp=sharing
 
 ## Root Routes
