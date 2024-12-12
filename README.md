@@ -1,7 +1,12 @@
 # Movie Max API Documentation
 
 ## Overview
-The Movie Max API provides endpoints for managing users, interacting with a watchlist, and retrieving data from the TMDB API. This document outlines the available routes and their functionalities.
+The Movie Max API provides endpoints for managing users, interacting with a watchlist, and retrieving data from the TMDB API. This document outlines the available routes and their functionalities. 
+The app uses: 
+- user_model
+- movie_model
+- watchlist_model
+
 
 ---
 
@@ -190,6 +195,8 @@ https://docs.google.com/document/d/1ODJwDcbWrOs2NB70VWrl8NrUR4SNIbCaSKmT9Ij_Ay0/
 - **Description:** Searches for a movie using the TMDB API.
 - **Query Parameters:**
   - `query` (required): The movie title to search for.
+ 
+
 - **Response Example:**
   ```json
   {
@@ -208,7 +215,7 @@ https://docs.google.com/document/d/1ODJwDcbWrOs2NB70VWrl8NrUR4SNIbCaSKmT9Ij_Ay0/
 - **Error Response:**
   ```json
   {
-      "error": "<Error searching movie:>"
+      "http error": "<Error searching movie:>"
   }
   ```
 
@@ -216,6 +223,8 @@ https://docs.google.com/document/d/1ODJwDcbWrOs2NB70VWrl8NrUR4SNIbCaSKmT9Ij_Ay0/
 - **URL:** `/api/movie/<int:movie_id>`
 - **Method:** `GET`
 - **Description:** Retrieves detailed information about a movie by its ID.
+- Request Body
+-   movieid (int)
 - **Response Example:**
   ```json
   {
@@ -239,6 +248,8 @@ https://docs.google.com/document/d/1ODJwDcbWrOs2NB70VWrl8NrUR4SNIbCaSKmT9Ij_Ay0/
 - **URL:** `/api/movie/<int:movie_id>/watch/providers`
 - **Method:** `GET`
 - **Description:** Retrieves watch providers for a specific movie.
+- Query parameters
+      - movieid: (int)
 - **Response Example:**
   ```json
   {
@@ -265,6 +276,8 @@ https://docs.google.com/document/d/1ODJwDcbWrOs2NB70VWrl8NrUR4SNIbCaSKmT9Ij_Ay0/
 - **URL:** `/api/movie/<int:movie_id>/recommendations`
 - **Method:** `GET`
 - **Description:** Fetches movie recommendations based on a movie ID.
+- Query parameters
+    - movieID (int)
 - **Response Example:**
   ```json
   {
@@ -312,6 +325,51 @@ https://docs.google.com/document/d/1ODJwDcbWrOs2NB70VWrl8NrUR4SNIbCaSKmT9Ij_Ay0/
       "error": "<Error fetching popular movies:>"
   }
   ```
+### 14. Add to Watchlist
+- **URL** '/api/watchlist/add'
+- **Method:** 'POST'
+- **Description:** Adds a movie to the user's watchlist
+- **Query Parameters:**
+-   username(string): user's username
+-   movie(string): movie to be added
 
+Success Response Example
+- Code 200
+- {movie['title']}' has been added to the watchlist"}
+
+Request Example
+{
+ username: "testuser"
+ movie" "Inception"
+}
+Response Example JSON
+{
+ {"message": f"'{movie['title']}' has been added to the watchlist"}, 200
+}
+  
+---
+
+### 15. Add to Watchlist
+- **URL** '/api/watchlist/remove'
+- **Method:** 'DELETE'
+- **Description:** removes a movie to the user's watchlist
+- **Query Parameters:**
+-   username(string): user's username
+-   movieid (int): movie to be added
+
+Success Response Example
+- Code 200
+- {movie['title']}' has been added to the watchlist"}
+
+Request Example
+{
+ username: "testuser"
+ movie" "27205"
+}
+Response Example JSON
+{
+ {"message": f"Movie with id '27205' has been removed to the watchlist"}, 200
+}
+  
 ---
 
